@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="jumbotron" style="margin: auto;width: 960px;">
+      <div>
+        <button type="button" class="btn btn-secondary" id="ex" style="float: right;">Explorer</button>
+      </div>
+      <h1 class="display-4">Exclude Manager</h1>
+      <p class="lead">Welcome, this site allows you to exclude DPs in a standardized manner!</p>
+      <hr class="my-4">
+      <p>Warning! 🍕 this action will prevent all entries from being included in the next report of assignment and production for processing and resolution AP NA.</p>
+      <div>
+          <div id="loadder" class="d-flex justify-content-center" style="display:none !important;">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          <div id="alert200" class="alert alert-success" role="alert" style="display:none">
+            Your data has been succesfully recorded!
+          </div>
+          <div id="alert404" class="alert alert-danger" role="alert" style="display:none">
+            There is something odd with your data!
+          </div>
+          <div>
+            <div class="form-group row">
+              <label for="user" class="col-sm-2 col-form-label">User:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" name="user" id="user">
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Type:</legend>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="ap2NonPo" value="AP2 - NON PO" onclick="showHideN(this)">
+                    <label class="form-check-label" for="ap2NonPo">
+                      AP2 - NON PO
+                    </label>
+                  </div>
+                  <div id="ap2npo" style="display:none;color:blue;">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="deringer" value="Deringer">
+                        <label class="form-check-label" for="deringer">Deringer</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="legal" value="Legal">
+                        <label class="form-check-label" for="legal">Legal</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="specificVendors" value="Specific vendors">
+                        <label class="form-check-label" for="specific-vendors">Specific vendors</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="telecom" value="Telecom">
+                        <label class="form-check-label" for="telecom">Telecom</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="wires" value="Wires">
+                        <label class="form-check-label" for="wires">Wires</label>
+                      </div>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="ap2Po" value="AP2 - PO" onclick="showHideP(this)">
+                    <label class="form-check-label" for="ap2Po">
+                      AP2 - PO
+                    </label>
+                  </div>
+                  <div id="ap2po" style="display:none;color:blue;">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="cnPa" value="CN – PA">
+                        <label class="form-check-label" for="cnPa">CN – PA</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="utilitiesAius" value="Utilities AIUS">
+                        <label class="form-check-label" for="utilitiesAius">Utilities AIUS</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="utilitiesHus" value="Utilities HUS">
+                        <label class="form-check-label" for="utilitiesHus">Utilities HUS</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="utilitiesLci" value="Utilities LCI">
+                        <label class="form-check-label" for="utilitiesLci">Utilities LCI</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="utilitiesLna" value="Utilities LNA">
+                        <label class="form-check-label" for="utilitiesLna">Utilities LNA</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="vAlexander" value="VAlexander">
+                        <label class="form-check-label" for="vAlexander">VAlexander</label>
+                      </div>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="cnPa1" value="CN – PA" onclick="showHide()">
+                    <label class="form-check-label" for="cnPa1">
+                      CN – PA
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="externalTaxError" value="External tax error" onclick="showHide()">
+                    <label class="form-check-label" for="externalTaxError">
+                      External tax error
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="processing" value="Processing" onclick="showHide()">
+                    <label class="form-check-label" for="processing">
+                      Processing
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="resolution" value="Resolution" onclick="showHide()">
+                    <label class="form-check-label" for="resolution">
+                      Resolution
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="robot" value="Robot" onclick="showHide()">
+                    <label class="form-check-label" for="robot">
+                      Robot
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="urgent" value="Urgent" onclick="showHide()">
+                    <label class="form-check-label" for="urgent">
+                      Urgent
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <label for="excludeMe" class="col-sm-2 col-form-label">Exclude ME!</label>
+              <div class="col-sm-3">
+                <textarea type="text" class="form-control" id="excludeMe"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="button" id="sn" class="btn btn-primary">Exclude</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("sn").addEventListener("click", onFormSubmitted);
+        document.getElementById("ex").addEventListener("click", goToExplorer);
+
+        function showHide() {
+            uncheck("inlineRadioOptions1");
+            uncheck("inlineRadioOptions2");
+            document.getElementById("ap2po").style.display = "none";
+            document.getElementById("ap2npo").style.display = "none";
+        }
+
+        function showHideN(selection) {
+            uncheck("inlineRadioOptions2");
+            document.getElementById("ap2npo").style.display = selection.value === "AP2 - NON PO" ? "block" : "none";
+            document.getElementById("ap2po").style.display = "none";
+        }
+
+        function showHideP(selection) {
+            uncheck("inlineRadioOptions1");
+            document.getElementById("ap2po").style.display = selection.value === "AP2 - PO" ? "block" : "none";
+            document.getElementById("ap2npo").style.display = "none";
+        }
+
+        // Read data from userform ----------------------------------------------------------------------------
+
+        function onFormSubmitted() {
+          document.getElementById("loadder").style.display = "block";
+          let data = {};
+          data.user = document.getElementById("user").value;
+          data.cat1 = getSelection("gridRadios");
+          data.cat2 = data.cat1 === "AP2 - NON PO" ? getSelection("inlineRadioOptions1") : data.cat1 === "AP2 - PO" ? getSelection("inlineRadioOptions2") : "";
+          data.docs = document.getElementById("excludeMe").value;
+          // cleanInputs(); //gridRadios
+          showHide();
+          document.getElementById("excludeMe").value = "";
+          document.getElementById("user").value = "";
+          uncheck("inlineRadioOptions1");
+          uncheck("inlineRadioOptions2");
+          uncheck("gridRadios");
+          google.script.run.withSuccessHandler(alertMe).storeData(data);
+
+        }
+
+        function alertMe(response) {
+          document.getElementById("loadder").setAttribute("style", "display:none !important");
+          document.getElementById("alert200").innerHTML = response.split(",")[0] === "200" ? response.split(",")[1] : "Verolofonte";
+          document.getElementById("alert404").innerHTML = response.split(",")[0] === "404" ? response.split(",")[1] : "Kimera";
+          document.getElementById("alert200").style.display = response.split(",")[0] === "200" ? "block" : "none";
+          document.getElementById("alert404").style.display = response.split(",")[0] === "404" ? "block" : "none";
+        }
+
+        function getSelection(element) {
+          let selection = document.getElementsByName(element);
+
+          for (let i=0; i<selection.length; i++) {
+
+            if (selection[i].checked) {
+              return selection[i].value;
+            }
+          }
+        }
+
+        function uncheck(element) {
+          let elements = document.getElementsByName(element);
+
+          for (let i = 0; i < elements.length; i++){
+            elements[i].checked = false;
+          }
+        }
+
+        function goToExplorer() {
+          google.script.run.withSuccessHandler(getChange).include("explorer");
+        }
+
+        function getChange(page) {
+          document.open();
+          document.write(page);
+          document.close();
+        }
+
+    </script>
+  </body>
+</html>

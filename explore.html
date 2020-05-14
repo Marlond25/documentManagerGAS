@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="jumbotron" style="margin: auto;width: 1300px;">
+      <div>
+        <button type="button" class="btn btn-secondary" id="hm" style="float: right;"><a style="color:white" target="_top" href="https://script.google.com/">Home</a></button>
+      </div>
+      <h1 class="display-4">Exclude Manager</h1>
+      <p class="lead">Welcome, this site allows you to exclude DPs in a standardized manner!</p>
+      <hr class="my-4">
+      <p>Select any criteria to be filtered in the data.</p>
+      <div>
+          <div>
+            <div id="aster">
+            </div>
+            <div class="jumbotron" style="position: relative;top: -30px;margin: auto;width: 1260px;height:50px;z-index:999">
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function() {
+          req();
+        }
+
+        function showHide () {
+            uncheck("inlineRadioOptions1");
+            uncheck("inlineRadioOptions2");
+            document.getElementById("ap2po").style.display = "none";
+            document.getElementById("ap2npo").style.display = "none";
+        }
+
+        function showHideN (selection) {
+            uncheck("inlineRadioOptions2");
+            document.getElementById("ap2npo").style.display = selection.value === "AP2 - NON PO" ? "block" : "none";
+            document.getElementById("ap2po").style.display = "none";
+        }
+
+        function showHideP (selection) {
+            uncheck("inlineRadioOptions1");
+            document.getElementById("ap2po").style.display = selection.value === "AP2 - PO" ? "block" : "none";
+            document.getElementById("ap2npo").style.display = "none";
+        }
+
+        // Read data from userform ----------------------------------------------------------------------------
+
+        function alertMe(response) {
+          goToExplorer();
+        }
+
+        function getSelection(element) {
+          let selection = document.getElementsByName(element);
+
+          for (let i=0; i<selection.length; i++) {
+
+            if (selection[i].checked) {
+              return selection[i].value;
+            }
+          }
+        }
+
+        function uncheck(element) {
+          let elements = document.getElementsByName(element);
+
+          for (let i = 0; i < elements.length; i++){
+            elements[i].checked = false;
+          }
+        }
+
+        function goToExplorer() {
+          google.script.run.withSuccessHandler(getChange).include("explorer");
+        }
+
+        function getChange(page) {
+          document.open();
+          document.write(page);
+          document.close();
+        }
+
+        function req() {
+          google.script.run.withSuccessHandler(set).aster();
+        }
+
+        function set(res) {
+          document.getElementById("aster").innerHTML= res;
+        }
+    </script>
+  </body>
+</html>
